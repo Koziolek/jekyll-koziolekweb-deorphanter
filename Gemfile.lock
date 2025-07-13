@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-koziolekweb-deorphanter (0.1.0)
+    jekyll-koziolekweb-deorphanter (0.1.2)
       jekyll (>= 3.7, < 5.0)
 
 GEM

@@ -1,0 +1,7 @@
+module Koziolekweb
+  module Deorphanter
+    BLOCK_REGEX: Regexp
+    REPLACE: string
+    SINGLE_LETTER: Regexp
+  end
+end

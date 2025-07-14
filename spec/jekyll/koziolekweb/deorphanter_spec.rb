@@ -27,6 +27,34 @@ RSpec.describe Koziolekweb::Deorphanter do
       expect(described_class.replace_single_letter_spaces(nil)).to be_nil
       expect(described_class.replace_single_letter_spaces(123)).to eq(123)
     end
+
+    it "pomija pojedyncze litery wewnątrz bloków kodu markdown" do
+      input = <<~MARKDOWN
+        To jest normalny tekst z literą a.
+        ```ruby
+        def test
+          a = 5
+          return a + b
+        end
+        ```
+        Kolejny akapit z literą o.
+      MARKDOWN
+
+      expected = <<~MARKDOWN
+        To jest normalny tekst z&nbsp;literą a.
+        ```ruby
+        def test
+          a = 5
+          return a + b
+        end
+        ```
+        Kolejny akapit z&nbsp;literą o.
+      MARKDOWN
+
+      result = described_class.replace_single_letter_spaces(input)
+      expect(result).to eq(expected)
+    end
+
   end
 
   describe ".apply_hook_to" do
